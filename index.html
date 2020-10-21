@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <p><a href="#">View high scores</a></p>
+        <p><a href="./highscores.html">View high scores</a></p>
         <div class="timerWrapper">
             <p>Time:</p>
             <p class="countDown">0</p>
@@ -17,40 +18,42 @@
     <main>
     <!-- Commented out the layouts that JavaSctipt will create -->
         
-    <!-- Initializing   
+    <!-- Initializing
         <div class="quizWrapper">
             <h1 class="question">WELCOME</h1>
-            <p>ABOUT-QUIZ</p>
-            <ol class="choices">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sapiente sunt, magni incidunt aperiam pariatur doloremque, non commodi aspernatur aut mollitia doloribus laborum quod saepe id ea nobis asperiores eligendi!</p>
+            <ul class="choices">
                 <li>Start Quiz</li>
-            </ol>
+            </ul>
         </div>
     -->
 
     <!-- Question
         <div class="quizWrapper">
             <h1 class="question">QUESTION</h1>
-            <ol class="choices">
+            <ul class="choices">
                 <li>ANSWER-CHOICE</li>
                 <li>ANSWER-CHOICE</li>
                 <li>ANSWER-CHOICE</li>
                 <li>ANSWER-CHOICE</li>
-            </ol>
-     -->
+            </ul>
+    -->
 
-     <!-- Finishing Page
+     <!-- Finishing Page -->
         <div class="quizWrapper">
             <h1 class="question"></h1>
             <h2 class="score"></h2>
             <form class="initials">
-                <h3>Enter initials:</h3>
-                <input type="text"></input>
+                <label for="initialInput">Enter initials: </label>
+                <input type="text" id="initialInput" name="initialInput"></input>
                 <button type="submit"></button>
             </form>
-    -->
+    
     </main>
     <footer>
-        <div class="previouslyAnswered"></div>
+        <div class="previouslyAnswered">
+            <span class="correctOrWrong">Correct!</span> You did great with the last question!
+        </div>
     </footer>
     <script src="assets/js/script.js"></script>
 </body>

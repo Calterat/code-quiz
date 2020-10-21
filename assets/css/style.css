@@ -1,0 +1,142 @@
+/* Defaulting Page */
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 25px;
+}
+
+/* Header Styles */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 50px;
+}
+
+header a {
+    text-decoration: none;
+    color: palevioletred;
+
+}
+
+.timerWrapper {
+    display: flex;
+}
+
+.timerWrapper p {
+    margin-left: 6px;
+    font-weight: bold;
+}
+
+/* Main Section Styles (Quiz Area) */
+
+.quizWrapper {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quizWrapper h1 {
+    margin-bottom: 30px;
+}
+
+.quizWrapper p {
+    margin-bottom: 30px;
+}
+
+/* - Answer Options */
+
+.choices {
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.choices li {
+    background-color: purple;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 1px 4px 1px rgba(0,0,0,.4)
+
+}
+
+.choices li:hover {
+    background-color: palevioletred;
+}
+
+/* Main Section Style (Last Page with Form) */
+
+
+
+/* Footer Styling */
+
+footer {
+    text-align: center;
+    color: rgba( 0,0,0, .5);
+}
+
+.previouslyAnswered span {
+    font-size: 2.5rem;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 800px) {
+    
+    /* Header Changes */
+
+    header {
+        padding: 0;
+        margin: 0 20px;
+        margin-top: 20px;
+    }
+
+    /* Main Section (Quiz Area) Changes */
+
+    .quizWrapper {
+        padding: 10px;
+    }
+
+    .quizWrapper h1 {
+        margin-bottom: 10px;
+        font-size: 3rem;
+    }
+
+    .quizWrapper p {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .choices {
+        flex-direction: column;
+        align-items: center;
+        justify-content: unset;
+    }
+
+    .choices li {
+        margin: 5px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    /* Footer Changes */
+
+    footer div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+}
