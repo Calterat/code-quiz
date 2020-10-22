@@ -12,21 +12,21 @@
         <p><a href="./highscores.html">View high scores</a></p>
         <div class="timerWrapper">
             <p>Time:</p>
-            <p class="countDown">0</p>
+            <p class="countDown">--</p>
         </div>
     </header>
-    <main>
-    <!-- Commented out the layouts that JavaSctipt will create -->
-        
-    <!-- Initializing
+    <main class="quizArea">
         <div class="quizWrapper">
-            <h1 class="question">WELCOME</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel sapiente sunt, magni incidunt aperiam pariatur doloremque, non commodi aspernatur aut mollitia doloribus laborum quod saepe id ea nobis asperiores eligendi!</p>
+            <h1 class="question">Code Quiz</h1>
+            <p class="score">
+                Welcome to Code Quiz! You are timed from the moment you start the quiz, so be quick and answer the questions correctly. If you answer incorrectly time will be lost! If you run out of time, the remaining questions will be forfeit and your score will immediately tally.
+            </p>
             <ul class="choices">
-                <li>Start Quiz</li>
+                <li id="startQuiz">Start Quiz</li>
             </ul>
         </div>
-    -->
+
+    <!-- Commented out the layouts that JavaSctipt will create -->
 
     <!-- Question
         <div class="quizWrapper">
@@ -52,7 +52,8 @@
     </main>
     <footer>
         <div class="previouslyAnswered">
-            <span class="correctOrWrong"></span>
+            <p class="correctOrWrong"></p>
+            <p><a class="restart" href="./index.html"></a></p>
         </div>
     </footer>
     <script src="assets/js/script.js"></script>

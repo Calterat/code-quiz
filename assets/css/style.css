@@ -32,6 +32,11 @@ header a {
     font-weight: bold;
 }
 
+.countDown {
+    min-width: 30px;
+    text-align: center;
+}
+
 /* Main Section Styles (Quiz Area) */
 
 .quizWrapper {
@@ -111,6 +116,10 @@ footer {
     text-align: center;
     font-size: 2rem;
     color: rgba( 0,0,0, .5);
+}
+
+footer a {
+    font-size: .9rem;
 }
 
 /* High Scores.HTML */
