@@ -14,13 +14,19 @@ body {
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 40px 50px;
 }
 
-header a {
-    text-decoration: none;
+.highScoresLink {
     color: palevioletred;
+    border-radius: 5px;
+    padding: 5px;
+}
 
+.highScoresLink:hover {
+    color: white;
+    background-color: pink;
 }
 
 .timerWrapper {

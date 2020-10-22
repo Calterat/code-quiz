@@ -43,15 +43,52 @@ let questionEl = document.querySelector(".question");
 let scoreEl = document.querySelector(".score");
 let correctOrWrongEl = document.querySelector(".correctOrWrong");
 let restartEl = document.querySelector(".restart");
+let highScoresLinkEl = document.querySelector(".highScoresLink");
+let choicesEl = document.querySelector(".choices");
 
 // Clear Quiz Area and all children in the wrapper
 
-const clearQuizWrapperEl = (event) => {
+const clearQuizWrapperEl = () => {
     quizWrapperEl.remove();
     quizWrapperEl.innerHTML = '';
 }
+// Highscores elements create
+const poop = () => {
 
-// Q and A
+}
+// Highscores Page Load
+
+const highScoresCreate = () => {
+    // Clear content
+    clearQuizWrapperEl();
+    // Create highScores content
+    let highScoresListEl = document.createElement("ul");
+    highScoresListEl.setAttribute("class", "highScore");
+    let highScoresBtnWrapperEl = document.createElement("div");
+    highScoresBtnWrapperEl.setAttribute("class", "highScoresBtnWrapper");
+    let goBackBtnEl = document.createElement("button");
+    goBackBtnEl.setAttribute = ("class", "goBack")
+    goBackBtnEl.textContent = "Go Back";
+    let clearScoresBtnEl = document.createElement("button");
+    clearScoresBtnEl.setAttribute("class", "clearScores");
+    clearScoresBtnEl.textContent = "Clear high scores";
+    // create goBack link
+    let goBackLink = document.createElement("a");
+    goBackLink.setAttribute("href", "./index.html");
+    goBackLink.appendChild(goBackBtnEl);
+    // load button wrapper
+    highScoresBtnWrapperEl.appendChild(goBackLink);
+    highScoresBtnWrapperEl.appendChild(clearScoresBtnEl);
+    // load highScores content
+    quizWrapperEl.appendChild(questionEl);
+    questionEl.textContent = "High Scores";
+    quizWrapperEl.appendChild(highScoresListEl);
+    quizWrapperEl.appendChild(highScoresBtnWrapperEl);
+
+    mainEl.appendChild(quizWrapperEl);
+
+    
+}
 
 // Start the Quiz from the Start Button with the count down and calling of Main Sections
 const startQuiz = (event) => {
@@ -131,5 +168,6 @@ const tallyQuizWrapperEl = () => {
 
 // Footer checking previously answered questions
 
-
+sessionStorage.setItem("1", "JG");
 startButtonEl.addEventListener("click", startQuiz);
+highScoresLinkEl.addEventListener("click", highScoresCreate);
