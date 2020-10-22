@@ -45,25 +45,21 @@ let correctOrWrongEl = document.querySelector(".correctOrWrong");
 let restartEl = document.querySelector(".restart");
 let highScoresLinkEl = document.querySelector(".highScoresLink");
 let choicesEl = document.querySelector(".choices");
+let formEl = '';
 
 // Clear Quiz Area and all children in the wrapper
 
 const clearQuizWrapperEl = () => {
+
     quizWrapperEl.remove();
     quizWrapperEl.innerHTML = '';
+
 }
 // Highscores elements create
-const poop = () => {
 
-}
-// Highscores Page Load
+const highScoresBtnWrapperCreate = () => {
 
-const highScoresCreate = () => {
-    // Clear content
-    clearQuizWrapperEl();
     // Create highScores content
-    let highScoresListEl = document.createElement("ul");
-    highScoresListEl.setAttribute("class", "highScore");
     let highScoresBtnWrapperEl = document.createElement("div");
     highScoresBtnWrapperEl.setAttribute("class", "highScoresBtnWrapper");
     let goBackBtnEl = document.createElement("button");
@@ -79,19 +75,37 @@ const highScoresCreate = () => {
     // load button wrapper
     highScoresBtnWrapperEl.appendChild(goBackLink);
     highScoresBtnWrapperEl.appendChild(clearScoresBtnEl);
+    return highScoresBtnWrapperEl;    
+
+}
+
+const highScoresListElCreate = () => {
+
+    // Create highScores Content
+    let highScoresListEl = document.createElement("ul");
+    highScoresListEl.setAttribute("class", "highScore");
+    return highScoresListEl;
+
+}
+// Highscores Page Load
+
+const highScoresQuizWrapperEl = (event) => {
+
+    // Clear content
+    clearQuizWrapperEl();
     // load highScores content
     quizWrapperEl.appendChild(questionEl);
     questionEl.textContent = "High Scores";
-    quizWrapperEl.appendChild(highScoresListEl);
-    quizWrapperEl.appendChild(highScoresBtnWrapperEl);
+    quizWrapperEl.appendChild(highScoresListElCreate());
+    quizWrapperEl.appendChild(highScoresBtnWrapperCreate());
+    mainEl.appendChild(quizWrapperEl);  
 
-    mainEl.appendChild(quizWrapperEl);
-
-    
 }
 
 // Start the Quiz from the Start Button with the count down and calling of Main Sections
+
 const startQuiz = (event) => {
+
     clearQuizWrapperEl();
     countDownEl.textContent = timer;
     restartEl.textContent = "Go back to start page";
@@ -102,7 +116,7 @@ const startQuiz = (event) => {
         if (timer !== 1) {
             --timer;
             countDownEl.textContent = timer;
-            if (timer < 6 ) {
+            if (timer < 11 ) {
                 countDownEl.setAttribute("style", "color: red;")
             }
         } else {
@@ -115,6 +129,7 @@ const startQuiz = (event) => {
         }
     }
     const startCountDown = setInterval(countDown, 1000);
+
 }
 
 // create Initials Form Element
@@ -123,7 +138,7 @@ const initialFormCreate = () => {
 
     // Create Form element and it's children elements
     // - form wrapper
-    let formEl = document.createElement("form");
+    formEl = document.createElement("form");
     formEl.setAttribute("class", "initials");
     // - label for the input
     let initialLabelEl = document.createElement("label");
@@ -134,10 +149,12 @@ const initialFormCreate = () => {
     initialInputEl.setAttribute("type", "text");
     initialInputEl.setAttribute("id", "initialInput");
     initialInputEl.setAttribute("name", "initialInput");
-    // - button to submit form
+    // - button to submit form assigned from the global
     let initialButtonEl = document.createElement("button");
     initialButtonEl.textContent = "Submit";
     initialButtonEl.setAttribute("type", "submit");
+    initialButtonEl.setAttribute("id", "submitInitials");
+    // initialButtonEl.setAttribute("type", "submit");
     // -- append all created child elements to the form wrapper
     formEl.appendChild(initialLabelEl);
     formEl.appendChild(initialInputEl);
@@ -148,6 +165,7 @@ const initialFormCreate = () => {
 // Finishing Page Population
 
 const tallyQuizWrapperEl = () => {
+    
     // place children elements with filled in text in empty quiz wrapper
     questionEl.textContent = "The quiz has ended!";
     scoreEl.textContent = "Your score: " + score;
@@ -164,10 +182,21 @@ const tallyQuizWrapperEl = () => {
     } else {
         correctOrWrongEl.textContent = "Fail.";
     }
+    // listen for the submit
+    formEl.addEventListener("submit", submitHighScore);
+}
+
+// Submitting functions
+
+const submitHighScore = (event) => {
+    event.preventDefault();
+    console.log(event);
+    highScoresQuizWrapperEl();
+
 }
 
 // Footer checking previously answered questions
 
 sessionStorage.setItem("1", "JG");
 startButtonEl.addEventListener("click", startQuiz);
-highScoresLinkEl.addEventListener("click", highScoresCreate);
+highScoresLinkEl.addEventListener("click", highScoresQuizWrapperEl);

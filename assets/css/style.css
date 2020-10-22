@@ -105,7 +105,7 @@ header {
     box-shadow: 0 1px 5px 1px rgba( 0,0,0, .2);
 }
 
-.quizWrapper form button {
+.initials button {
     margin: 0 10px;
     min-height: 35px;
     min-width: 75px;
@@ -114,6 +114,10 @@ header {
     background-color: purple;
     border: 1px solid rgba(0,0,0,.1);
     box-shadow: 0 1px 5px 1px rgba( 0,0,0, .3);
+}
+
+.initials button:hover {
+    background-color: pink;
 }
 
 /* Footer Styling */
