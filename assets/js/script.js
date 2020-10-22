@@ -55,10 +55,11 @@ const clearQuizWrapperEl = (event) => {
 
 // Start the Quiz from the Start Button with the count down and calling of Main Sections
 const startQuiz = (event) => {
+    clearQuizWrapperEl();
     countDownEl.textContent = timer;
     restartEl.textContent = "Go back to start page";
     // call Q and A
-    
+
     // Timer for the quiz
     const countDown = () => {
         if (timer !== 1) {
@@ -77,7 +78,6 @@ const startQuiz = (event) => {
         }
     }
     const startCountDown = setInterval(countDown, 1000);
-    clearQuizWrapperEl();
 }
 
 // create Initials Form Element
