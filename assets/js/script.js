@@ -2,6 +2,8 @@
 
 let score = 100;
 let timer = 10;
+let highScores = [];
+let highScoreCounter = 0;
 
 // Need Question Arrays
 
@@ -46,6 +48,8 @@ let restartEl = document.querySelector(".restart");
 let highScoresLinkEl = document.querySelector(".highScoresLink");
 let choicesEl = document.querySelector(".choices");
 let formEl = '';
+let clearScoresBtnEl = '';
+let highScoreButtons = '';
 
 // Clear Quiz Area and all children in the wrapper
 
@@ -65,7 +69,7 @@ const highScoresBtnWrapperCreate = () => {
     let goBackBtnEl = document.createElement("button");
     goBackBtnEl.setAttribute = ("class", "goBack")
     goBackBtnEl.textContent = "Go Back";
-    let clearScoresBtnEl = document.createElement("button");
+    clearScoresBtnEl = document.createElement("button");
     clearScoresBtnEl.setAttribute("class", "clearScores");
     clearScoresBtnEl.textContent = "Clear high scores";
     // create goBack link
@@ -87,6 +91,17 @@ const highScoresListElCreate = () => {
     return highScoresListEl;
 
 }
+
+// Clear Scores
+
+const clearScores = () => {
+    console.log(highScores);
+    highScores = '';
+    highScoreCounter = 0;
+    highScoreButtons.remove();
+    console.log(highScores);
+}
+
 // Highscores Page Load
 
 const highScoresQuizWrapperEl = (event) => {
@@ -97,8 +112,11 @@ const highScoresQuizWrapperEl = (event) => {
     quizWrapperEl.appendChild(questionEl);
     questionEl.textContent = "High Scores";
     quizWrapperEl.appendChild(highScoresListElCreate());
-    quizWrapperEl.appendChild(highScoresBtnWrapperCreate());
-    mainEl.appendChild(quizWrapperEl);  
+    highScoreButtons = highScoresBtnWrapperCreate();
+    quizWrapperEl.appendChild(highScoreButtons);
+    mainEl.appendChild(quizWrapperEl);
+
+    clearScoresBtnEl.addEventListener("click", clearScores);
 
 }
 
@@ -186,13 +204,27 @@ const tallyQuizWrapperEl = () => {
     formEl.addEventListener("submit", submitHighScore);
 }
 
+// Assigning High Score
+const assigningHighScore = (value) => {
+    let highScoreObj = {
+        position: '',
+        initials: '',
+        score: ''
+    };
+
+    highScoreObj.position = highScoreCounter;
+    highScoreObj.initials = value;
+    highScoreObj.score = score;
+    highScores.push(highScoreObj);
+    ++highScoreCounter;
+}
+
 // Submitting functions
 
 const submitHighScore = (event) => {
     event.preventDefault();
-    console.log(event);
+    assigningHighScore(document.querySelector("input[name='initialInput']").value);
     highScoresQuizWrapperEl();
-
 }
 
 // Footer checking previously answered questions
