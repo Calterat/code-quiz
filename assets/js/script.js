@@ -72,7 +72,9 @@ const createQuizQuestions = (num) => {
 const qAndA = () => {
     for (i = 0; i < qAndA.length; ++i) {
         clearQuizWrapperEl();
-        createQuizQuestions(i);
+        let question =  createQuizQuestions(i);
+        mainEl.appendChild(question);
+        
     }
 
 
