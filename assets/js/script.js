@@ -5,6 +5,7 @@ let timer = 100;
 let highScores = [];
 let highScoreCounter = 0;
 let questionNumber = 0;
+let startCountDown = '';
 
 // Need Question Arrays
 
@@ -89,11 +90,13 @@ const createQuizQuestions = (num) => {
 const questionsAndAnswers = () => {
     let question = '';
     clearQuizWrapperEl();
+    correctOrWrongEl.textContent = '';
     if (questionNumber < qAndA.length) {
         question =  createQuizQuestions(questionNumber);
         mainEl.appendChild(question);
         ++questionNumber;
     } else {
+        clearInterval(startCountDown);
         tallyQuizWrapperEl();
     }
 }
@@ -183,7 +186,7 @@ const startQuiz = (event) => {
             tallyQuizWrapperEl();
         }
     }
-    const startCountDown = setInterval(countDown, 1000);
+    startCountDown = setInterval(countDown, 1000);
     questionsAndAnswers();
     choicesEl.addEventListener("submit", answerChecker);
 
@@ -275,13 +278,11 @@ const answerChecker = (event) => {
         score = score + 20;
         correctOrWrongEl.textContent = "Correct! Great Job!";
         let timeToNextQuestion = setTimeout(questionsAndAnswers, 1000);
-        correctOrWrongEl.textContent = '';
     } else {
         correctOrWrongEl.textContent = "Wrong! 10 seconds deducted from your time!";
         timer = timer - 10;
         countDownEl.textContent = timer;
         let timeToNextQuestion = setTimeout(questionsAndAnswers, 1000);
-        correctOrWrongEl.textContent = '';
     }
 }
 
