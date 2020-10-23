@@ -1,7 +1,7 @@
 // Standard Variables
 
 let score = 0;
-let timer = 100;
+let timer = 10;
 let highScores = [];
 let highScoreCounter = 0;
 let questionNumber = 0;
@@ -52,7 +52,7 @@ let choicesEl = document.querySelector(".choices");
 let formEl = '';
 let clearScoresBtnEl = '';
 let highScoreButtons = '';
-let choiceItem = '';
+let highScoresListEl = '';
 
 // Clear Quiz Area and all children in the wrapper
 
@@ -125,24 +125,34 @@ const highScoresBtnWrapperCreate = () => {
 
 }
 
-const highScoresListElCreate = () => {
-
-    // Create highScores Content
-    let highScoresListEl = document.createElement("ul");
-    highScoresListEl.setAttribute("class", "highScore");
-    return highScoresListEl;
-
-}
-
 // Clear Scores
 
 const clearScores = () => {
 
     highScores = '';
     highScoreCounter = 0;
-    highScoreButtons.remove();
+    highScoresListEl.remove();
     
 }
+
+// Generates Score List
+
+const generateScores = () => {
+    let highScoreItem = '';
+    highScoresListEl = document.createElement("ul");
+    highScoresListEl.setAttribute("class", "highScore");
+    console.log(highScores);
+    if (highScores.length === 0) {
+        highScoresListEl.setAttribute("style", "background-color: white;");
+    }
+    for (b = 0; b < highScores.length; ++b) {
+        highScoreItem = document.createElement("li");
+        highScoreItem.textContent = `${highScores[b].position+1}. ${highScores[b].initials} - ${score}`;
+        highScoresListEl.appendChild(highScoreItem);
+    }
+    return highScoresListEl;
+}
+
 
 // Highscores Page Load
 
@@ -153,10 +163,12 @@ const highScoresQuizWrapperEl = (event) => {
     // load highScores content
     quizWrapperEl.appendChild(questionEl);
     questionEl.textContent = "High Scores";
-    quizWrapperEl.appendChild(highScoresListElCreate());
+    let scoreList = generateScores();
+    quizWrapperEl.appendChild(scoreList);
     highScoreButtons = highScoresBtnWrapperCreate();
     quizWrapperEl.appendChild(highScoreButtons);
     mainEl.appendChild(quizWrapperEl);
+    console.log(highScoresListEl);
 
     clearScoresBtnEl.addEventListener("click", clearScores);
 
@@ -265,7 +277,9 @@ const assigningHighScore = (value) => {
 
 const submitHighScore = (event) => {
     event.preventDefault();
-    assigningHighScore(document.querySelector("input[name='initialInput']").value);
+    let initialInput = event.submitter.value;
+    console.log(initialInput);
+    assigningHighScore(initialInput);
     highScoresQuizWrapperEl();
 }
 
@@ -286,8 +300,5 @@ const answerChecker = (event) => {
     }
 }
 
-// Footer checking previously answered questions
-
-sessionStorage.setItem("1", "JG");
 startButtonEl.addEventListener("click", startQuiz);
 highScoresLinkEl.addEventListener("click", highScoresQuizWrapperEl);
