@@ -1,7 +1,7 @@
 // Standard Variables
 
 let score = 0;
-let timer = 10;
+let timer = 100;
 let highScores = [];
 let highScoreCounter = 0;
 let questionNumber = 0;
@@ -11,29 +11,54 @@ let startCountDown = '';
 
 const qAndA = [
     {
-        q: "What is your name?",
-        a: "Sir Lancelot of Camelot",
-        choices: ["Roger", "Robert", "Reginold", "Sir Lancelot of Camelot"]
+        q: "What surrounds the conditional requirements in an IF/ELSE statement?",
+        a: "Parenthesis ()",
+        choices: ["Stright Brackets []", "Squiggle Brackets {}", "Parenthesis ()", "Quotes ' '"]
     },
     {
-        q: "What is your quest?",
-        a: "To seek the Holy Grail",
-        choices: ["To booger pick", "To Poop", "To seek the Holy Grail", "To score 100%"]
+        q: "What is the Emmet syntax to populate a a boilerplate HTML page?",
+        a: "!",
+        choices: ["!", "HTML", "Starter", "<>"]
     },
     {
-        q: "What is your favourite colour?",
-        a: "Blue",
-        choices: ["Blue", "No, Yellow", "Orange-ish", "Maroon"]
+        q: "What input element type attribute allows you to input many characters including numbers and symbols?",
+        a: "textarea",
+        choices: ["type", "textarea", "input", "textarea"]
     },
     {
-        q: "What is the capitol of Assyria?",
-        a: "Assur",
-        choices: ["I don't know that!", "Where is that?", "Assur", "Wait, Wha?!"]
+        q: "When checking an equals condition it is best to use which syntax to avoid possible problems?",
+        a: "===",
+        choices: ["==", "====", "=", "==="]
     },
     {
-        q: "What is the air speed velocity of an unladen swallow?",
-        a: "African or European?",
-        choices: ["African or European?", "120 mph", "45 mph", "Velocity unknown"]
+        q: "What is the NOT symbol used to reverse boolean conditions?",
+        a: "!",
+        choices: ["NOT", "/", "-", "!"]
+    },
+    {
+        q: "What is a Web API that can allow JavaScript to manipulate HTML Elements?",
+        a: "DOM",
+        choices: ["JS-HTML", "DOM", "MOD", "DOT"]
+    },
+    {
+        q: "Which timer method can be used to delay a function call?",
+        a: "setTimeout()",
+        choices: ["setIntervalDelay()", "setInterval()", "setTimeoutDelay()", "setTimeout()"]
+    },
+    {
+        q: "When using timer methods in JavaScript, the second parameter is in what measurement?",
+        a: "milliseconds",
+        choices: ["milliseconds", "seconds", "minutes", "microseconds"]
+    },
+    {
+        q: "While Loops continue to run as long as their condition is _______.",
+        a: "truthy",
+        choices: ["falsy", "equal", "truthy", "none of the above"]
+    },
+    {
+        q: "A CSS rule-set is comprised of at least a selector and a ________.",
+        a: "declaration",
+        choices: ["rule", "declaration", "style", "function"]
     }
 ]
 
@@ -141,7 +166,6 @@ const generateScores = () => {
     let highScoreItem = '';
     highScoresListEl = document.createElement("ul");
     highScoresListEl.setAttribute("class", "highScore");
-    console.log(highScores);
     if (highScores.length === 0) {
         highScoresListEl.setAttribute("style", "background-color: white;");
     }
@@ -168,7 +192,6 @@ const highScoresQuizWrapperEl = (event) => {
     highScoreButtons = highScoresBtnWrapperCreate();
     quizWrapperEl.appendChild(highScoreButtons);
     mainEl.appendChild(quizWrapperEl);
-    console.log(highScoresListEl);
 
     clearScoresBtnEl.addEventListener("click", clearScores);
 
@@ -277,7 +300,7 @@ const assigningHighScore = (value) => {
 
 const submitHighScore = (event) => {
     event.preventDefault();
-    let initialInput = event.submitter.value;
+    let initialInput = document.querySelector("input[name='initialInput']").value;
     console.log(initialInput);
     assigningHighScore(initialInput);
     highScoresQuizWrapperEl();
@@ -289,7 +312,7 @@ const answerChecker = (event) => {
     event.preventDefault();
     let playerAnswer = event.submitter.value;
     if (playerAnswer === qAndA[questionNumber-1].a) {
-        score = score + 20;
+        score = score + 10;
         correctOrWrongEl.textContent = "Correct! Great Job!";
         let timeToNextQuestion = setTimeout(questionsAndAnswers, 1000);
     } else {
