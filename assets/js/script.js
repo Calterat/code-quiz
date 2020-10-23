@@ -1,9 +1,10 @@
 // Standard Variables
 
-let score = 100;
-let timer = 10;
+let score = 0;
+let timer = 100;
 let highScores = [];
 let highScoreCounter = 0;
+let questionNumber = 0;
 
 // Need Question Arrays
 
@@ -11,7 +12,7 @@ const qAndA = [
     {
         q: "What is your name?",
         a: "Sir Lancelot of Camelot",
-        choices: ["Roger", "Robert", "Reginold", "Sir Lancelot of Camelot"],
+        choices: ["Roger", "Robert", "Reginold", "Sir Lancelot of Camelot"]
     },
     {
         q: "What is your quest?",
@@ -50,6 +51,7 @@ let choicesEl = document.querySelector(".choices");
 let formEl = '';
 let clearScoresBtnEl = '';
 let highScoreButtons = '';
+let choiceItem = '';
 
 // Clear Quiz Area and all children in the wrapper
 
@@ -63,22 +65,37 @@ const clearQuizWrapperEl = () => {
 // Create Q and A elements
 
 const createQuizQuestions = (num) => {
-    
+    quizWrapperEl = document.createElement("div");
+    quizWrapperEl.setAttribute("class", "quizWrapper");
+    choicesEl.innerHTML = '';
+    questionEl.textContent = qAndA[num].q;
+    quizWrapperEl.appendChild(questionEl);
+    quizWrapperEl.appendChild(choicesEl);
+    for (a = 0; a < qAndA[num].choices.length; ++a) {
+        choice = document.createElement("button");
+        choice.textContent = (a+1) + ". " + qAndA[num].choices[a];
+        choice.value = qAndA[num].choices[a];
+        choice.setAttribute("class", "choiceItem");
+        choice.setAttribute("type", "submit");
+        choice.setAttribute("name", "choiceItem");
+        choicesEl.appendChild(choice);
+    }
+    return quizWrapperEl;
 }
 
 
 // Q and A page loaded and looped
 
-const qAndA = () => {
-    for (i = 0; i < qAndA.length; ++i) {
-        clearQuizWrapperEl();
-        let question =  createQuizQuestions(i);
+const questionsAndAnswers = () => {
+    let question = '';
+    clearQuizWrapperEl();
+    if (questionNumber < qAndA.length) {
+        question =  createQuizQuestions(questionNumber);
         mainEl.appendChild(question);
-        
+        ++questionNumber;
+    } else {
+        tallyQuizWrapperEl();
     }
-
-
-
 }
 
 // Highscores elements create
@@ -117,11 +134,11 @@ const highScoresListElCreate = () => {
 // Clear Scores
 
 const clearScores = () => {
-    console.log(highScores);
+
     highScores = '';
     highScoreCounter = 0;
     highScoreButtons.remove();
-    console.log(highScores);
+    
 }
 
 // Highscores Page Load
@@ -148,7 +165,6 @@ const startQuiz = (event) => {
 
     countDownEl.textContent = timer;
     restartEl.textContent = "Go back to start page";
-    // call Q and A
 
     // Timer for the quiz
     const countDown = () => {
@@ -168,7 +184,8 @@ const startQuiz = (event) => {
         }
     }
     const startCountDown = setInterval(countDown, 1000);
-    qAndA();
+    questionsAndAnswers();
+    choicesEl.addEventListener("submit", answerChecker);
 
 }
 
@@ -208,7 +225,7 @@ const tallyQuizWrapperEl = () => {
     
     // place children elements with filled in text in empty quiz wrapper
     questionEl.textContent = "The quiz has ended!";
-    scoreEl.textContent = "Your score: " + score;
+    scoreEl.textContent = `Your score: ${score}`;
     quizWrapperEl.appendChild(questionEl);
     quizWrapperEl.appendChild(scoreEl);
     quizWrapperEl.appendChild(initialFormCreate());
@@ -247,6 +264,25 @@ const submitHighScore = (event) => {
     event.preventDefault();
     assigningHighScore(document.querySelector("input[name='initialInput']").value);
     highScoresQuizWrapperEl();
+}
+
+// Player Answer Checking
+
+const answerChecker = (event) => {
+    event.preventDefault();
+    let playerAnswer = event.submitter.value;
+    if (playerAnswer === qAndA[questionNumber-1].a) {
+        score = score + 20;
+        correctOrWrongEl.textContent = "Correct! Great Job!";
+        let timeToNextQuestion = setTimeout(questionsAndAnswers, 1000);
+        correctOrWrongEl.textContent = '';
+    } else {
+        correctOrWrongEl.textContent = "Wrong! 10 seconds deducted from your time!";
+        timer = timer - 10;
+        countDownEl.textContent = timer;
+        let timeToNextQuestion = setTimeout(questionsAndAnswers, 1000);
+        correctOrWrongEl.textContent = '';
+    }
 }
 
 // Footer checking previously answered questions

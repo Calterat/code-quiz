@@ -72,7 +72,7 @@ header {
     list-style-type: none;
 }
 
-.choices li {
+.choiceItem {
     background-color: purple;
     padding: 10px 20px;
     border-radius: 10px;
@@ -81,7 +81,7 @@ header {
 
 }
 
-.choices li:hover {
+.choiceItem:hover {
     background-color: palevioletred;
 }
 
@@ -194,7 +194,7 @@ footer a {
         justify-content: unset;
     }
 
-    .choices li {
+    .choiceItem {
         margin: 5px;
     }
 
