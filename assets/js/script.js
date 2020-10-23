@@ -7,6 +7,13 @@ let highScoreCounter = 0;
 let questionNumber = 0;
 let startCountDown = '';
 
+if (sessionStorage.getItem("highScores")!==null) {
+    highScores = sessionStorage.getItem("highScores");
+    highScores = JSON.parse(highScores);
+} else {
+    highScores = [];
+}
+
 // Need Question Arrays
 
 const qAndA = [
@@ -157,6 +164,7 @@ const clearScores = () => {
     highScores = '';
     highScoreCounter = 0;
     highScoresListEl.remove();
+    sessionStorage.clear();
     
 }
 
@@ -294,6 +302,7 @@ const assigningHighScore = (value) => {
     highScoreObj.score = score;
     highScores.push(highScoreObj);
     ++highScoreCounter;
+    sessionStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
 // Submitting functions
