@@ -59,6 +59,26 @@ const clearQuizWrapperEl = () => {
     quizWrapperEl.innerHTML = '';
 
 }
+
+// Create Q and A elements
+
+const createQuizQuestions = (num) => {
+    
+}
+
+
+// Q and A page loaded and looped
+
+const qAndA = () => {
+    for (i = 0; i < qAndA.length; ++i) {
+        clearQuizWrapperEl();
+        createQuizQuestions(i);
+    }
+
+
+
+}
+
 // Highscores elements create
 
 const highScoresBtnWrapperCreate = () => {
@@ -124,7 +144,6 @@ const highScoresQuizWrapperEl = (event) => {
 
 const startQuiz = (event) => {
 
-    clearQuizWrapperEl();
     countDownEl.textContent = timer;
     restartEl.textContent = "Go back to start page";
     // call Q and A
@@ -147,6 +166,7 @@ const startQuiz = (event) => {
         }
     }
     const startCountDown = setInterval(countDown, 1000);
+    qAndA();
 
 }
 
