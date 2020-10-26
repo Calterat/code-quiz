@@ -13,7 +13,7 @@
     <a href="https://github.com/Calterat/code-quiz"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://calterat.github.io/password-generator/">View Demo</a>
+    <a href="https://calterat.github.io/code-quiz/">View Demo</a>
   </p>
 </p>
 <br/>
@@ -38,15 +38,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![](./assets/images/pass-gen-mockup.png)
+![](./assets/images/code-quiz-screenshot.png)
 
-Here's a quick screenshot of the password generator page.
+Here's a quick screenshot of the code quiz page.
 
-Under the hood of this webpage is my random password generator. This displays some of my abilities with JavaScript. The user is asked 5 questions for generating the password. How long do you want the password? Do you want lowercase letters? Do you want uppercase letters? Do you want numbers? Do you want special characters?
+Under the hood of this webpage is my JavaScript coded quiz. This displays some of my abilities with JavaScript. The user is asked 10 questions for obtaining a highscore. You are timed, however, so you cannot take too long. Also, for every question answered incorrectly not only will there be no points assessed but additional time will be deducted.
 
-Pulling random characters to fill up a password string wasn't too terribly difficult... After all, if you select all character types there are a ton of characters to choose from. 
-
-HOWEVER, the validations to all user inputs and the validation to determine that for each character set chosen at least one character was used in any produced password was a bit of a challange. Especially the latter of the two. The validation code was almost three times that of the actual random selectors.
+This was a challenge as the whole site had to be written from the ground up. there are no code snippets used from others. Challanges I faced on this project was the use of Java to dynamically create the HTML for display.
 
 These are the learned tools in JavaSCript that I used to accomplish the this project:
  - Variables
@@ -55,6 +53,7 @@ These are the learned tools in JavaSCript that I used to accomplish the this pro
  - while and for loops
  - if/else conditional statements
  - functions
+ - The DOM and other Web APIs
 
 
 
@@ -87,7 +86,7 @@ These are the tools you'll need if locally editing the source code.
 
 1. Clone the repo (type in Bash or Terminal)
 ```
-git clone git@github.com:Calterat/password-generator.git
+git clone git@github.com:Calterat/code-quiz.git
 ```
 
 
@@ -95,7 +94,7 @@ git clone git@github.com:Calterat/password-generator.git
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-[My Portfolio](https://calterat.github.io/password-generator/)
+[My Portfolio](https://calterat.github.io/code-quiz/)
 
 Please press the 'Generate Button' and use it to produce a random password using the character types you selected.
 
@@ -159,11 +158,11 @@ Thank you for taking the time to check out and use my random password generator!
 <!--
 
 [GitHub Repository]: https://github.com/Calterat/code-quiz
-[Password Generator URL]: https://calterat.github.io/password-generator/
+[Password Generator URL]: https://calterat.github.io/code-quiz/
 [issues-url]: https://github.com/Calterat/code-quiz/issues
 [license-url]: https://github.com/Calterat/code-quiz/blob/master/LICENSE.txt
 [linkedin-url]: https://www.linkedin.com/in/julian-gillis-5ba18b20/
 ![personal-image](./assets/images/julian-img.jpeg)
-![product-screenshot](./assets/images/pass-gen-mockup.png)
+![product-screenshot](.assets/images/code-quiz-screenshot.png)
 
 -->
